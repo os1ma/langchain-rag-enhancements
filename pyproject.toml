@@ -18,3 +18,7 @@ faiss-cpu = "^1.7.4"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[ruff.tool]
+select = ["ALL"]
+ignore = ["D", "ANN", "ARG", "COM"]
