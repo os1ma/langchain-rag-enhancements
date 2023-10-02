@@ -6,7 +6,7 @@ from langchain.embeddings import OpenAIEmbeddings
 from langchain.retrievers.multi_query import MultiQueryRetriever
 from langchain.vectorstores import FAISS
 
-langchain.verbose = True
+langchain.debug = True
 
 load_dotenv()
 
