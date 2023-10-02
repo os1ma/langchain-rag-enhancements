@@ -19,8 +19,18 @@ print(response)
 response = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
     messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Hello!"},
+        {
+            "role": "user",
+            "content": "Hello! I'm Oshima.",
+        },
+        {
+            "role": "assistant",
+            "content": "Nice to meet you, Oshima! How can I assist you today?",
+        },
+        {
+            "role": "user",
+            "content": "Please introduce yourself.",
+        },
     ],
     temperature=0,
 )
