@@ -29,8 +29,6 @@ Profile: Celestia Rainbow is a world-famous novelist, and her works have been tr
 """,
 ]
 
-query = "Please introduce Seraphim Vortex."
-
 # FAISSのセットアップ
 embeddings = OpenAIEmbeddings()
 db = FAISS.from_texts(texts, embeddings)
@@ -38,8 +36,6 @@ faiss_retriever = db.as_retriever(search_kwargs={"k": 1})
 
 # BM25のセットアップ
 bm25_retriever = BM25Retriever.from_texts(texts, k=1)
-rel_docs = bm25_retriever.get_relevant_documents(query)
-print(rel_docs)
 
 # 2つのRetrieverを組み合わせる
 ensemble_retriever = EnsembleRetriever(
