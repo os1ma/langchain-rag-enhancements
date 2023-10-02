@@ -7,15 +7,6 @@ load_dotenv()
 
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
-# Completions API
-response = openai.Completion.create(
-    model="gpt-3.5-turbo-instruct",
-    prompt="Hello!",
-    temperature=0,
-)
-print(response)
-
-# Chat Completions API
 response = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
     messages=[
@@ -34,4 +25,5 @@ response = openai.ChatCompletion.create(
     ],
     temperature=0,
 )
+
 print(response)
