@@ -9,7 +9,7 @@ langchain.verbose = True
 
 load_dotenv()
 
-# FAISSに保存されたベクトルを読み込む
+# FAISSで保存されたベクトルを読み込む
 embeddings = OpenAIEmbeddings()
 db = FAISS.load_local("./tmp/faiss", embeddings)
 retriever = db.as_retriever()

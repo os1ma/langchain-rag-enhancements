@@ -22,7 +22,7 @@ text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
 docs = text_splitter.split_documents(raw_docs)
 print(len(docs))
 
-# ドキュメントをベクトル化して、FAISSに保存する
+# ドキュメントをベクトル化して、FAISSに読み込む
 embeddings = OpenAIEmbeddings()
 db = FAISS.from_documents(docs, embeddings)
 db.save_local("./tmp/faiss")

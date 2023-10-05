@@ -6,7 +6,7 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.retrievers import BM25Retriever, EnsembleRetriever
 from langchain.vectorstores import FAISS
 
-langchain.debug = True
+langchain.verbose = True
 
 load_dotenv()
 
@@ -29,12 +29,12 @@ Profile: Celestia Rainbow is a world-famous novelist, and her works have been tr
 """,
 ]
 
-# FAISSのセットアップ
+# 用意したデータをFAISSで検索する準備
 embeddings = OpenAIEmbeddings()
 db = FAISS.from_texts(texts, embeddings)
 faiss_retriever = db.as_retriever(search_kwargs={"k": 1})
 
-# BM25のセットアップ
+# 用意したデータをBM25で検索する準備
 bm25_retriever = BM25Retriever.from_texts(texts, k=1)
 
 # 2つのRetrieverを組み合わせる
@@ -42,6 +42,7 @@ ensemble_retriever = EnsembleRetriever(
     retrievers=[bm25_retriever, faiss_retriever], weights=[0.5, 0.5]
 )
 
+# 「関連する文書を検索 => LLMに回答を生成させる」を実行する「RetrievalQA」を準備
 chat = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
 qa_chain = RetrievalQA.from_chain_type(
     llm=chat, chain_type="stuff", retriever=ensemble_retriever
